@@ -24,12 +24,17 @@ export default function ThemeToggle() {
 
   return (
     <button
-      onClick={toggle}
-      className="rounded-full border px-3 py-1 text-sm hover:bg-black/5 dark:hover:bg-white/10"
-      aria-label="Toggle theme"
-      type="button"
+    onClick={toggle}
+    type="button"
+    aria-label="Toggle theme"
+    className="
+        rounded-full px-4 py-2 font-semibold transition-colors
+        bg-khaki text-forest
+        dark:bg-forest dark:text-khaki
+        hover:opacity-90
+    "
     >
-      {dark ? "🌙 Dark" : "☀️ Light"}
+    {dark ? "🌙 Dark" : "☀️ Light"}
     </button>
   );
 }

@@ -1,0 +1,149 @@
+﻿import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+
+export default function Page() {
+  const results = [
+    { href:"/papers/elephant-movement-northern-kalahari", meta:"paper · Okavango · 2019", title:"Elephant movement in northern Kalahari" },
+    { href:"/papers/land-board-minutes-grazing-ghanzi-2016", meta:"doc · Ghanzi · 2016", title:"Land Board Minutes on Grazing Allotments" },
+    { href:"/projects/water-points-rehabilitation-pilot-2024", meta:"project · Kgalagadi · 2024", title:"Water points rehabilitation (pilot)" },
+    { href:"/people/dr-mubyana-vegetation-dynamics", meta:"researcher · Kalahari South · 2022", title:"Dr. T. Mubyana — vegetation dynamics" },
+  ];
+
+  return (
+    <div>
+      <Nav />
+
+      {/* HERO */}
+      <section id="home" className="k-section">
+        <div className="k-container k-grid k-grid-2 items-center">
+          <div>
+            <h1 className="k-h1 k-readable-tight k-balance k-text-elevate k-measure">">Botswana Kalahari: papers, projects, people, and places</h1>
+            <p className="muted mt-3 k-readable k-measure-sm">A hub to discover Botswana-Kalahari knowledge—past to present. Browse categories or explore the map.</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link href="/papers" className="k-btn">Browse records</Link>
+              <Link href="/map" className="k-btn k-btn-ghost">Open map →</Link>
+            </div>
+            <ul className="muted grid gap-2 text-[14px] mt-4 list-none p-0 k-readable k-prose">
+              <li>✔ Papers, projects, researchers</li>
+              <li>✔ Region-aware filtering</li>
+              <li>✔ Open access ethos</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="k-card p-lg k-readable">
+              <div className="k-hero-img">Hero image of the Kalahari</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BROWSE */}
+      <section id="browse" className="k-section">
+        <div className="k-container">
+          <h2 className="text-[28px] mb-4">Browse records</h2>
+          <div className="k-grid k-grid-4">
+            <Link href="/papers?type=gov" className="k-card p-md block">
+              <h3 className="mb-1">Government Reports</h3>
+              <p className="muted m-0">Policy papers, EIAs, wildlife counts, land board notices.</p>
+            </Link>
+            <Link href="/papers?type=academic" className="k-card p-md block">
+              <h3 className="mb-1">Academic Papers</h3>
+              <p className="muted m-0">Peer-reviewed research on ecology, hydrology, and society.</p>
+            </Link>
+            <Link href="/projects" className="k-card p-md block">
+              <h3 className="mb-1">Active Projects</h3>
+              <p className="muted m-0">Fieldwork and community initiatives across the Kalahari.</p>
+            </Link>
+            <Link href="/people" className="k-card p-md block">
+              <h3 className="mb-1">Researchers</h3>
+              <p className="muted m-0">Directory of experts and collaborators.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* MAP + FILTERS (static placeholder) */}
+      <section id="map" className="k-section">
+        <div className="k-container">
+          <h2 className="text-[28px] mb-2">Interactive map</h2>
+          <p className="muted text-[14px] mb-4">Static preview. In the live site, clicking a region filters results. Importing CSV/JSON will also update results.</p>
+          <div className="k-grid k-grid-2 items-start">
+            <div className="k-map k-card" />
+            <div>
+              <div className="flex flex-wrap gap-2">
+                <Link href="/map?region=all" className="k-chip" style={{ background:"var(--accent)", color:"#fff", borderColor:"var(--accent)" }}>All</Link>
+                <Link href="/map?region=okavango" className="k-chip">Okavango</Link>
+                <Link href="/map?region=kalahari-north" className="k-chip">Kalahari North</Link>
+                <Link href="/map?region=kalahari-south" className="k-chip">Kalahari South</Link>
+                <Link href="/map?region=ghanzi" className="k-chip">Ghanzi</Link>
+                <Link href="/map?region=kgalagadi" className="k-chip">Kgalagadi</Link>
+              </div>
+
+              <div className="flex flex-wrap gap-3 items-center mt-3">
+                <input placeholder="Search title…" className="k-input" style={{ borderColor:"var(--border)", color:"var(--text)" }} />
+                <select className="k-input" style={{ borderColor:"var(--border)", color:"var(--text)" }}>
+                  <option>All types</option>
+                  <option>Papers</option>
+                  <option>Gov/grey docs</option>
+                  <option>Projects</option>
+                  <option>Researchers</option>
+                </select>
+                <span className="muted text-[12px]">4 result(s)</span>
+              </div>
+
+              <div className="k-grid k-grid-2 mt-4">
+                {results.map((r)=>(
+                  <Link key={r.href} href={r.href} className="k-card p-sm rounded-[16px] block" style={{ borderColor:"var(--border)" }}>
+                    <div className="uppercase tracking-[.04em] text-[12px]" style={{ color:"var(--muted)" }}>{r.meta}</div>
+                    <div className="mt-1 font-semibold">{r.title}</div>
+                    <div className="muted text-[14px] mt-1">View →</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="k-section">
+        <div className="k-container k-grid k-grid-2">
+          <div>
+            <h2 className="text-[28px] mb-2">About</h2>
+            <p className="muted k-readable">
+              This community project catalogs research and practice across Botswana’s Kalahari to reduce duplication,
+              surface local expertise, and accelerate learning.
+            </p>
+            <ul className="grid gap-2 text-[14px] mt-3 p-0 list-none k-readable k-prose">
+              <li className="k-chip">Government & grey literature</li>
+              <li className="k-chip">Peer-reviewed papers</li>
+              <li className="k-chip">Active projects</li>
+              <li className="k-chip">Researcher directory</li>
+            </ul>
+            <div className="flex gap-3 text-[14px] mt-3">
+              <a className="k-chip" href="https://github.com/">GitHub</a>
+              <a className="k-chip" href="https://www.linkedin.com/">LinkedIn</a>
+              <a className="k-chip" href="mailto:nicolas@thegazelle.co">Email</a>
+            </div>
+          </div>
+
+          <div className="k-card p-md k-readable">
+            <h3 className="mb-2">Road map</h3>
+            <ol className="pl-5 m-0" style={{ color:"var(--text)" }}>
+              <li>Import region polygons & gazetteer.</li>
+              <li>Upload initial document set.</li>
+              <li>Search & filters by type, year, region, keywords.</li>
+              <li>Contributor flow & moderation.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
+
+

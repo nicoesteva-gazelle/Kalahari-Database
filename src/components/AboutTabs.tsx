@@ -1,0 +1,46 @@
+"use client";
+import { useState } from "react";
+const tabs = ["Scope","Roadmap","Team","Contribute"] as const;
+type Tab = typeof tabs[number];
+export default function AboutTabs(){
+  const [t, setT] = useState<Tab>("Scope");
+  return (
+    <div className="k-card p-lg">
+      <div className="flex flex-wrap gap-2">
+        {tabs.map(x => (
+          <button key={x} onClick={()=>setT(x)} className="k-chip" style={t===x?{background:"var(--accent)",color:"#fff",borderColor:"var(--accent)"}:{}}>{x}</button>
+        ))}
+      </div>
+      {t==="Scope" && (
+        <div className="k-prose k-readable mt-3">
+          <ul>
+            <li>Government & grey literature (EIAs, wildlife counts, land board notices)</li>
+            <li>Peer-reviewed papers and theses</li>
+            <li>Active projects & partners</li>
+            <li>Researchers & institutions</li>
+          </ul>
+        </div>
+      )}
+      {t==="Roadmap" && (
+        <ol className="k-prose k-readable mt-3">
+          <li>Ingest initial records; define minimum metadata (title, type, year, region, org).</li>
+          <li>Add polygons & gazetteer; enable map-driven filtering.</li>
+          <li>Contributor workflow (submit Ã¢â€ â€™ review Ã¢â€ â€™ publish) with provenance.</li>
+          <li>CSV/JSON export + lightweight API for reuse.</li>
+          <li>Drive/SharePoint integrations for bulk import.</li>
+          <li>Quality signals (citations, peer review, last-updated).</li>
+        </ol>
+      )}
+      {t==="Team" && (
+        <div className="k-prose k-readable mt-3">
+          <p>Looking for collaborators in ecology, hydrology, governance, geospatial, and data stewardship.</p>
+        </div>
+      )}
+      {t==="Contribute" && (
+        <div className="k-prose k-readable mt-3">
+          <p>Email <a href="mailto:hello@kalahari-atlas.org" className="k-link">hello@kalahari-atlas.org</a> with a title, year, type, region, and a link or file.</p>
+        </div>
+      )}
+    </div>
+  );
+}

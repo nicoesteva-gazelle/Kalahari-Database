@@ -1,7 +1,4 @@
-import { Inter } from 'next/font/google';
-import SiteFooter from "@/components/SiteFooter";
-import SiteHeader from "@/components/SiteHeader";
-import "./globals.css";
+﻿import "./globals.css";
 import { Inter, Fraunces } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -11,16 +8,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <head>
-        <meta charSet="utf-8" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=document.documentElement;var ls=localStorage.getItem("theme");var sys=window.matchMedia("(prefers-color-scheme: dark)").matches;var t=ls?ls:(sys?"dark":"light");d.classList.toggle("dark",t==="dark");d.setAttribute("data-theme",t);}catch(e){}})();`,
           }}
         />
       </head>
-      <body className={`min-h-screen ${inter.className}`}>
-      <SiteHeader />{children}  <SiteFooter />
-</body>
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }

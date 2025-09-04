@@ -1,0 +1,11 @@
+﻿export default function ProjectsPage(){
+  return (
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <h1 className="k-h1">Active Projects</h1>
+      <p className="muted mt-2">Fieldwork and community initiatives across the Kalahari (placeholder page).</p>
+      <ul className="grid gap-3 mt-6 p-0 list-none">
+        <li><a href="/projects/water-points-rehabilitation-pilot-2024" className="k-card p-sm block">Water points rehabilitation (pilot, 2024)</a></li>
+      </ul>
+    </main>
+  );
+}

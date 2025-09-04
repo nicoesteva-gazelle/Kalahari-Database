@@ -1,0 +1,10 @@
+export default function Page(){
+  return (
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <a href="/projects" className="muted">€  Back to Projects</a>
+      <h1 className="k-h1" style={{marginTop:"8px"}}>Water points rehabilitation (pilot)</h1>
+      <p className="muted">Region: Kgalagadi · Year: 2024</p>
+      <div className="k-card p-lg" style={{marginTop:"16px"}}>Placeholder description, milestones, and partners.</div>
+    </main>
+  );
+}

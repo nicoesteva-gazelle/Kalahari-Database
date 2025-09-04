@@ -1,0 +1,34 @@
+"use client";
+import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
+
+/* Right-aligned brand: we flip the row (flex-row-reverse) so the brand sits on the far right,
+   and the nav links sit to its left with even spacing. */
+export default function Nav() {
+  return (
+    <header className="k-header">
+      <div className="k-container">
+        <nav className="flex items-center justify-between h-16 flex-row-reverse">
+          {/* BRAND (right side) */}
+          <div className="flex items-center gap-3">
+            <span className="grid place-items-center w-[22px] h-[22px] rounded-md" style={{ background: "var(--accent-2)" }}>Ã¢Å“¦</span>
+            <Link href="/" className="k-brand k-brand-xl font-display k-pop">
+              Kalahari Database
+              <span className="block k-brand-subtle">Research Atlas</span>
+            </Link>
+          </div>
+
+          {/* NAV LINKS (left side, even spacing) */}
+          <div className="k-navlinks">
+            <Link href="/" className="muted">Home</Link>
+            <Link href="/papers" className="muted">Browse</Link>
+            <Link href="/map" className="muted">Map</Link>
+            <Link href="/about" className="muted">About</Link>
+            <ThemeToggle />
+            <a className="k-btn" href="mailto:hello@kalahari-atlas.org">Contribute a record</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}

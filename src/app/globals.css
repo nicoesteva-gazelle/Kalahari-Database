@@ -1,37 +1,131 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Make fonts look crisp */
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-/* Subtle “sand” texture using layered gradients */
-.kalahari-sand {
-  background-image:
-    radial-gradient(1200px 600px at 80% -10%, rgba(255,255,255,0.45), transparent 60%),
-    radial-gradient(900px 500px at -10% 10%, rgba(255,255,255,0.35), transparent 65%),
-    radial-gradient(600px 300px at 110% 80%, rgba(255,255,255,0.25), transparent 70%),
-    linear-gradient(180deg, #f4efe5 0%, #e8decc 40%, #dccdb3 100%);
+/* === Kalahari theme (Safari-like, dark green) === */
+:root{
+  --bg:#f2e8d5;           /* khaki */
+  --text:#1f2937;         /* slate-800 */
+  --muted:#6b7280;        /* slate-500 */
+  --border:#e5e7eb;       /* gray-200 */
+  --card:#ffffff;
+  --accent:#047857;       /* emerald-700 (dark green) */
+  --accent-2:#10b981;     /* emerald-500 */
+}
+.dark{
+  --bg:#052e2b;           /* deep green */
+  --text:#f8fafc;         /* slate-50 */
+  --muted:#cbd5e1;        /* slate-300 */
+  --border:#0e4a45;       /* green border */
+  --card:#083b37;         /* card green */
+  --accent:#34d399;       /* emerald-400 */
+  --accent-2:#86efac;     /* emerald-300 */
 }
 
-.dark .kalahari-dusk {
-  background-image:
-    radial-gradient(900px 500px at 100% -10%, rgba(255,255,255,0.06), transparent 60%),
-    radial-gradient(800px 500px at 0% 0%, rgba(255,255,255,0.04), transparent 65%),
-    linear-gradient(180deg, #0f1a14 0%, #10301f 60%, #0f1a14 100%);
-}
+/* Safari-like typography & rhythm */
+html,body{background:var(--bg);color:var(--text);font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;font-size:16px;line-height:1.5;letter-spacing:.005em}
+h1,h2,h3{letter-spacing:.0125em}
+small, .text-xs{letter-spacing:.02em}
 
-/* Small utility for glass cards */
-.glass {
-  @apply bg-white/70 backdrop-blur border border-sand-200;
-}
-.dark .glass {
-  @apply bg-white/5 backdrop-blur border border-acacia-800;
-}
+/* Layout utilities */
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:56px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.grid{display:grid;gap:24px}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width: 900px){.grid-2{grid-template-columns:1fr}.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
 
-:root {
-  --font-inter: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-fraunces: Fraunces, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+/* Buttons & chips */
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.6rem 1rem;border-radius:16px;border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:600}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+
+/* Header & footer (Safari-like translucency) */
+.site-header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--bg) 85%, transparent);z-index:40}
+.site-nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.footer{border-top:1px solid var(--border)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;height:84px}
+
+/* Hero & map */
+.h1{font-size:clamp(32px,4vw,46px);line-height:1.1;margin:0}
+.hero-img{aspect-ratio:16/9;border:1px dashed var(--border);border-radius:18px;display:grid;place-items:center;color:var(--muted)}
+.map-frame{height:clamp(420px, 60vh, 760px);border-radius:22px;border:1px solid var(--border);overflow:hidden}
+
+/* Forms/list */
+.input{width:100%;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:.6rem .8rem}
+.list{display:flex;flex-direction:column;gap:10px}
+.list-item{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--card)}
+a{color:inherit;text-decoration:none}
+
+/* === Sizing & Safari-like polish === */
+:root{ --scale: 1 }
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:56px 0}
+h1,h2,h3{letter-spacing:.0125em}
+html,body{letter-spacing:.005em}
+
+/* Map frames */
+.map-frame{height:clamp(420px, 60vh, 760px); border-radius:22px; border:1px solid var(--border); overflow:hidden}
+.map-page{min-height:calc(100vh - 64px - 84px); display:flex; align-items:stretch}
+.map-page .map-frame{height:clamp(560px, 72vh, 900px); width:100%}
+
+/* Toggle switch */
+.toggle{
+  --w:52px; --h:30px;
+  position:relative; width:var(--w); height:var(--h);
+  border:1px solid var(--border); border-radius:999px; background:var(--card);
+  display:inline-flex; align-items:center; padding:2px; cursor:pointer;
+  transition:background .2s ease, border-color .2s ease;
 }
-.font-sans { font-family: var(--font-inter); }
-.font-display { font-family: var(--font-fraunces); }
+.toggle[data-on="true"]{ background: var(--accent); border-color: var(--accent); }
+.toggle-thumb{
+  width:26px; height:26px; border-radius:999px; background:#fff; box-shadow:0 1px 0 rgba(0,0,0,.10);
+  transform:translateX(0); transition:transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.toggle[data-on="true"] .toggle-thumb{ transform:translateX(22px) }
+.toggle-label{font-size:.85rem; margin-left:.6rem}
+
+/* List & chips */
+.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:10px}
+.list-item{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--card)}
+.input{width:100%;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:.6rem .8rem}
+.card-fill{ display:flex; flex-direction:column; min-height:140px; }
+.card-fill h3{ margin:0 0 .25rem 0; }
+.card-fill p{ margin:0; color:var(--muted) }
+:root{ --text-strong: #0f172a }     /* slate-900 */
+.dark{ --text-strong: #f8fafc }     /* slate-50 */
+strong, h1, h2, h3 { color: var(--text-strong) }
+
+/* Consistent card fill for home browse boxes */
+.card-fill{ display:flex; flex-direction:column; min-height:140px }
+.card-fill h3{ margin:0 0 .25rem 0; }
+.card-fill p{ margin:0; color:var(--muted) }
+
+/* Map frames (home + map) */
+.map-frame{ height:clamp(420px, 60vh, 760px); border-radius:22px; border:1px solid var(--border); overflow:hidden }
+.map-page .map-frame{ height:clamp(560px, 72vh, 900px) }
+
+/* === Pro polish additions === */
+
+/* Map grid */
+.k-map-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; height:100%; padding:16px; background:color-mix(in oklab, var(--card) 92%, transparent) }
+.k-map-cell{ display:grid; place-items:center; font-size:clamp(22px,3vw,44px); font-weight:700; letter-spacing:.01em; border-radius:18px; background:#d9fbe1; color:#114; border:3px solid color-mix(in oklab, var(--text) 20%, transparent); padding:12px; }
+.dark .k-map-cell{ background:#c6f6d5; color:#063; border-color: color-mix(in oklab, var(--text) 35%, transparent) }
+.k-map-cell:hover{ transform:translateY(-1px); transition:transform .15s ease }
+
+/* Browse cards */
+.k-browse-grid{ display:grid; gap:18px; grid-template-columns:repeat(4,1fr) }
+@media (max-width: 1100px){ .k-browse-grid{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width: 640px){ .k-browse-grid{ grid-template-columns:1fr } }
+
+.k-card-cta{ display:block; padding:18px; border-radius:20px; border:1px solid var(--border); background:var(--card); box-shadow:0 1px 0 rgba(0,0,0,.03) }
+.k-card-cta h3{ margin:0 0 6px 0; font-size:18px }
+.k-card-cta p{ margin:0; color:var(--muted) }
+.k-card-cta:hover{ outline:2px solid color-mix(in oklab, var(--accent) 35%, transparent) }
+
+/* Headings pop slightly more */
+.h1{ font-size:clamp(32px,4vw,46px); line-height:1.1; margin:0; color:var(--text-strong) }
+strong, h1, h2, h3 { color: var(--text-strong) }

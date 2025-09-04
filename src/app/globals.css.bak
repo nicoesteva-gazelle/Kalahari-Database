@@ -1,0 +1,408 @@
+﻿/* ==== Kalahari “static-preview” theme tokens (light & dark) ==== */
+:root{
+  --bg:#f2e8d5;             /* light khaki */
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --accent:#047857;         /* emerald */
+  --accent-2:#10b981;       /* light emerald */
+  --card:#ffffff;
+}
+.dark{
+  --bg:#052e2b;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --border:#0e4a45;
+  --accent:#34d399;
+  --accent-2:#86efac;
+  --card:#083b37;
+}
+
+/* Base canvas derived from vars */
+body { background: var(--bg); color: var(--text); }
+
+/* Utility shims to match the static file */
+.muted { color: var(--muted); }
+.k-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.k-section { padding: 56px 0; }
+
+/* Glassy surface / cards / chips / buttons */
+.k-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 1px 0 rgba(0,0,0,.03); }
+.k-chip { padding: .25rem .6rem; border-radius: 999px; border: 1px solid var(--border); font-size: .8rem; display:inline-block; }
+
+.k-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-radius:16px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600; }
+.k-btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+
+.k-hero-img { aspect-ratio: 16/9; border:1px dashed var(--border); border-radius:18px; display:grid; place-items:center; color:var(--muted); }
+
+/* Sticky header backdrop */
+.k-header { backdrop-filter:saturate(140%) blur(6px); position:sticky; top:0; border-bottom:1px solid var(--border); background: color-mix(in oklab, var(--bg) 85%, transparent); }
+
+/* Simple grid helpers (responsive matches the static) */
+.k-grid { display:grid; gap:24px; }
+.k-grid-2 { grid-template-columns: 1fr 1fr; }
+.k-grid-3 { grid-template-columns: repeat(3,1fr); }
+.k-grid-4 { grid-template-columns: repeat(4,1fr); }
+@media (max-width: 900px){
+  .k-grid-4{ grid-template-columns: repeat(2,1fr); }
+  .k-grid-3{ grid-template-columns: repeat(2,1fr); }
+  .k-grid-2{ grid-template-columns: 1fr; }
+}
+
+/* Map block placeholder */
+.k-map { height:360px; border-radius:22px; border:1px solid var(--border); background:linear-gradient(135deg,#e8fff3,#f3fff8); }
+
+/* Hero type scale like the static */
+.k-h1 { font-size: clamp(32px, 4vw, 46px); line-height: 1.1; margin: 0; }
+
+/* Toggle pill look */
+.k-toggle { cursor: pointer; display:inline-flex; align-items:center; gap:.55rem; padding:.6rem 1rem; border-radius:999px; border:1px solid #065f46; background:#065f46; color:#fff; font-weight:700; box-shadow:0 2px 0 rgba(0,0,0,.05); transition:transform .04s ease, box-shadow .2s ease, background .2s ease; }
+/* ==== Kalahari “static-preview” theme tokens (light & dark) ==== */
+:root{
+  --bg:#f2e8d5; --text:#1f2937; --muted:#6b7280; --border:#e5e7eb;
+  --accent:#047857; --accent-2:#10b981; --card:#ffffff;
+}
+.dark{
+  --bg:#052e2b; --text:#f8fafc; --muted:#cbd5e1; --border:#0e4a45;
+  --accent:#34d399; --accent-2:#86efac; --card:#083b37;
+}
+
+/* Base canvas derived from vars */
+body { background: var(--bg); color: var(--text); }
+
+/* Utility shims to match the static */
+.muted { color: var(--muted); }
+.k-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.k-section { padding: 56px 0; }
+
+/* Glassy surface / cards / chips / buttons */
+.k-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 1px 0 rgba(0,0,0,.03); }
+.k-chip { padding: .25rem .6rem; border-radius: 999px; border: 1px solid var(--border); font-size: .8rem; display:inline-block; }
+.k-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border-radius:16px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600; }
+.k-btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+.k-hero-img { aspect-ratio:16/9; border:1px dashed var(--border); border-radius:18px; display:grid; place-items:center; color:var(--muted); }
+
+/* Sticky header backdrop */
+.k-header { backdrop-filter:saturate(140%) blur(6px); position:sticky; top:0; border-bottom:1px solid var(--border); background: color-mix(in oklab, var(--bg) 85%, transparent); }
+
+/* Simple grid helpers (responsive matches the static) */
+.k-grid { display:grid; gap:24px; }
+.k-grid-2 { grid-template-columns: 1fr 1fr; }
+.k-grid-3 { grid-template-columns: repeat(3,1fr); }
+.k-grid-4 { grid-template-columns: repeat(4,1fr); }
+@media (max-width: 900px){
+  .k-grid-4{ grid-template-columns: repeat(2,1fr); }
+  .k-grid-3{ grid-template-columns: repeat(2,1fr); }
+  .k-grid-2{ grid-template-columns: 1fr; }
+}
+
+/* Map block placeholder */
+.k-map { height:360px; border-radius:22px; border:1px solid var(--border); background:linear-gradient(135deg,#e8fff3,#f3fff8); }
+
+/* Hero type scale like the static */
+.k-h1 { font-size: clamp(32px, 4vw, 46px); line-height: 1.1; margin: 0; }
+
+/* Toggle pill look */
+.k-toggle { cursor: pointer; display:inline-flex; align-items:center; gap:.55rem; padding:.6rem 1rem; border-radius:999px; border:1px solid #065f46; background:#065f46; color:#fff; font-weight:700; box-shadow:0 2px 0 rgba(0,0,0,.05); transition:transform .04s ease, box-shadow .2s ease, background .2s ease; }
+
+/* === Spacing overrides (looser, more pro) === */
+.k-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.k-section { padding: 80px 0; }
+.k-grid { display:grid; gap: 28px; }
+@media (min-width: 1200px){
+  .k-section { padding: 96px 0; }
+  .k-grid { gap: 32px; }
+}
+/* Card padding scale */
+.k-card.p-sm { padding: 14px; }
+.k-card.p-md { padding: 18px; }
+.k-card.p-lg { padding: 24px; }
+
+/* === Kalahari typography micro-kit ===
+   Improves readability without changing your visual layout
+   ------------------------------------------------------- */
+.k-readable { 
+  letter-spacing: 0.004em;   /* subtle kerning */
+  word-spacing: 0.02em;      /* space between words */
+  line-height: 1.55;         /* comfy paragraphs */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern","liga","calt";
+}
+
+.k-readable-tight {
+  letter-spacing: 0.006em;   /* headings need a hair more tracking */
+  word-spacing: 0.02em;
+  line-height: 1.15;         /* crisp but not cramped */
+  text-wrap: balance;        /* modern multi-line balance */
+}
+
+.k-balance { text-wrap: balance; }             /* balance any heading */
+.k-measure { max-width: 68ch; }                /* ideal reading width */
+.k-measure-sm { max-width: 58ch; }             /* for intros and straplines */
+
+.k-emphasis { color: var(--text); font-weight: 600; }
+.k-muted { color: var(--muted); }
+
+.k-text-elevate { 
+  /* lift text slightly off variable backgrounds */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35), 0 8px 24px rgba(0,0,0,0.12);
+}
+.dark .k-text-elevate {
+  text-shadow: 0 1px 0 rgba(0,0,0,0.55), 0 10px 36px rgba(0,0,0,0.32);
+}
+
+/* nicer lists & spacing rhythm inside prose blocks */
+.k-prose p { margin: 0 0 0.6em 0; }
+.k-prose ul, .k-prose ol { margin: 0.6em 0 0 0; padding-left: 1.1em; }
+.k-prose li { margin: 0.25em 0; }
+
+/* Inputs: match text rhythm */
+.k-input, .k-select { 
+  padding: .6rem .8rem; border-radius: 12px; 
+  border: 1px solid var(--border); background: transparent; 
+  color: var(--text); letter-spacing: 0.004em; word-spacing: 0.02em;
+}
+
+/* Links in body copy stand out a touch */
+.k-link { text-decoration: underline; text-underline-offset: 3px; }
+
+/* === Dark-mode POP upgrades === */
+.dark {
+  /* Slightly brighter text & cards, clearer borders */
+  --text: #f9fafb;            /* a touch brighter */
+  --muted: #d1d5db;           /* bump contrast a notch */
+  --card: #0b4a45;            /* a hair lighter than before */
+  --border: #11665f;          /* brighter border for definition */
+}
+
+/* Lift headings & important text off background */
+.k-text-elevate {
+  text-shadow: 0 1px 0 rgba(255,255,255,.35), 0 10px 34px rgba(0,0,0,.14);
+}
+.dark .k-text-elevate {
+  text-shadow: 0 1px 0 rgba(0,0,0,.6), 0 14px 44px rgba(0,0,0,.45);
+}
+
+/* Card glass tweak for dark mode */
+.k-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+}
+
+/* Even spacing for the top navigation (matches the static preview) */
+.k-navlinks { display:flex; align-items:center; gap:22px; flex-wrap:nowrap; }
+@media (max-width: 900px){ .k-navlinks { gap:14px; flex-wrap:wrap; } }
+
+/* === Text POP + Rhythm (global) ===
+   Makes all copy lift off the background, esp. in dark mode, without changing your layout.
+   Mirrors the static preview’s contrast + clarity.  :contentReference[oaicite:0]{index=0} */
+:root{
+  --link-underline: color-mix(in oklab, var(--accent) 70%, var(--text) 30%);
+}
+::selection{ background: color-mix(in oklab, var(--accent) 22%, transparent); }
+
+/* Headings — subtle lift; dark mode stronger */
+h1,h2,h3,.k-heading-pop{
+  text-shadow: 0 1px 0 rgba(255,255,255,.35), 0 10px 34px rgba(0,0,0,.14);
+  letter-spacing: .006em;
+}
+.dark h1,.dark h2,.dark h3,.dark .k-heading-pop{
+  text-shadow: 0 1px 0 rgba(0,0,0,.60), 0 14px 44px rgba(0,0,0,.45);
+}
+
+/* Body copy — micro tracking/word spacing + slight lift for readability */
+main, .k-readable-global{
+  letter-spacing: .004em;
+  word-spacing: .02em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+.k-copy-pop{
+  text-shadow: 0 1px 0 rgba(255,255,255,.28), 0 6px 20px rgba(0,0,0,.10);
+}
+.dark .k-copy-pop{
+  text-shadow: 0 1px 0 rgba(0,0,0,.55), 0 10px 36px rgba(0,0,0,.32);
+}
+
+/* Links — clearer underline + slight lift on hover */
+a:not(.k-btn):not(.k-chip){
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+  text-underline-offset: 3px;
+  text-decoration-thickness: .075em;
+}
+a:not(.k-btn):not(.k-chip):hover{ text-shadow: 0 6px 18px rgba(0,0,0,.10); }
+
+/* Cards & borders in dark for definition */
+.dark .k-card{
+  border-color: var(--border);
+  box-shadow: 0 1px 0 rgba(0,0,0,.10);
+}
+
+/* Inter-component rhythm — slightly tighter than before */
+.k-section{ padding: 64px 0; }             /* was 80–96px */
+.k-grid{ gap: 24px; }                       /* was 28–32px */
+.k-card.p-lg{ padding: 22px; }              /* subtle tighten */
+.k-card.p-md{ padding: 16px; }
+.k-card.p-sm{ padding: 12px; }
+
+/* Inputs align with copy rhythm */
+.k-input,.k-select{
+  padding:.58rem .8rem; border-radius:12px; border:1px solid var(--border);
+  background:transparent; color:var(--text);
+  letter-spacing:.004em; word-spacing:.02em;
+}
+
+/* === Brand & header polish === */
+.k-header { backdrop-filter:saturate(140%) blur(6px); position:sticky; top:0; border-bottom:1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+}
+.k-header::after { content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,.06), transparent 70%);
+}
+.k-navlinks { display:flex; align-items:center; gap:22px; flex-wrap:nowrap; }
+
+/* Brand look: white, safari vibe (Fraunces), lifted */
+.k-brand { color:#fff; letter-spacing:.045em; text-transform:uppercase; font-weight:800; line-height:1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.45), 0 16px 36px rgba(0,0,0,.38);
+}
+
+/* Header links are always white (unified), never purple/blue */
+.k-header a { color: #fff !important; text-decoration: none; }
+
+/* === Unified link colors (body) === */
+a:not(.k-btn):not(.k-chip) {
+  color: var(--accent);                   /* light mode default: deep green */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: .075em;
+  transition: color .2s ease, text-shadow .2s ease;
+}
+/* visited: keep readable in light mode (white) */
+a:not(.k-btn):not(.k-chip):visited { color: #fff; }
+/* dark mode: links are light green; visited stays light green */
+.dark a:not(.k-btn):not(.k-chip),
+.dark a:not(.k-btn):not(.k-chip):visited { color: var(--accent-2); }
+a:not(.k-btn):not(.k-chip):hover, a:not(.k-btn):not(.k-chip):focus { text-shadow: 0 6px 18px rgba(0,0,0,.12); }
+
+/* Tighter inter-component rhythm */
+.k-section { padding: 56px 0; }
+.k-grid { gap: 20px; }
+.k-card.p-lg { padding: 20px; } .k-card.p-md { padding: 16px; } .k-card.p-sm { padding: 12px; }
+
+/* Inputs/selects keep rhythm */
+.k-input,.k-select{ padding:.58rem .8rem; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text);
+  letter-spacing:.004em; word-spacing:.02em;
+}
+
+/* ==== Tone & contrast tweaks (LIGHT MODE gets POP) ==== */
+:root{
+  --bg:#f4efe5;
+  --text:#0f172a;      /* deeper for crisp read */
+  --muted:#374151;     /* darker muted */
+  --border:#e5e7eb;
+  --accent:#065f46;    /* deep green */
+  --accent-2:#86efac;  /* light green for dark mode links */
+  --card:#ffffff;
+}
+.dark{
+  --bg:#052e2b;
+  --text:#f8fafc;
+  --muted:#d1d5db;
+  --border:#11665f;
+  --card:#0b4a45;
+}
+
+/* Body: calmer typography (less busy) */
+body, main, .k-readable-global{
+  font-kerning: normal;
+  letter-spacing: .0015em;   /* calmer */
+  word-spacing: .015em;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings use Fraunces + subtle lift (not overdone) */
+.k-heading, h1, h2, .k-brand {
+  letter-spacing:.01em;
+}
+.k-pop {
+  text-shadow: 0 1px 0 rgba(255,255,255,.18), 0 10px 24px rgba(0,0,0,.10);
+}
+.dark .k-pop {
+  text-shadow: 0 1px 0 rgba(0,0,0,.55), 0 10px 32px rgba(0,0,0,.36);
+}
+
+/* Brand styles (bigger, right side) */
+.k-brand-xl {
+  font-weight: 900;
+  font-size: clamp(20px, 1.6vw, 26px);
+  text-transform: uppercase;
+  color: #fff;
+}
+.k-brand-subtle { color: #e2fced; font-size: .8rem; letter-spacing: .08em }
+
+/* Header layout + always-white links */
+.k-header { position:sticky; top:0; border-bottom:1px solid var(--border); backdrop-filter:saturate(140%) blur(6px); background: color-mix(in oklab, var(--bg) 85%, transparent); z-index: 40; }
+.k-header a { color:#fff !important; text-decoration:none; }
+
+/* Nav row spacing */
+.k-navlinks { display:flex; align-items:center; gap:22px; flex-wrap:nowrap; }
+
+/* Links in body */
+a:not(.k-btn):not(.k-chip) {
+  color: var(--accent);
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: .075em;
+  transition: color .2s ease, text-shadow .2s ease;
+}
+a:not(.k-btn):not(.k-chip):visited { color: #0b3b2f; }  /* dark green visited in light */
+.dark a:not(.k-btn):not(.k-chip),
+.dark a:not(.k-btn):not(.k-chip):visited { color: var(--accent-2); }
+
+/* Cards & sections */
+.k-section { padding: 56px 0; }
+.k-grid { gap: 20px; }
+.k-card { background: var(--card); border:1px solid var(--border); border-radius:20px; box-shadow:0 1px 0 rgba(0,0,0,.03); }
+.k-card.p-lg { padding:20px } .k-card.p-md{ padding:16px } .k-card.p-sm{ padding:12px }
+
+/* Inputs/selects */
+.k-input,.k-select{ padding:.56rem .8rem; border-radius:12px; border:1px solid var(--border); background:transparent; color:var(--text); letter-spacing:.0015em; word-spacing:.015em; }
+
+/* Balanced headings & readable measure */
+.k-balance { text-wrap: balance; }
+.k-measure { max-width: 68ch; }
+.k-measure-sm { max-width: 58ch; }
+
+/* ===== Global polish ===== */
+:root{
+  --bg:#f6f4ef;
+  --text:#0f172a;
+  --muted:#5b6475;
+  --accent:#2563eb;
+  --accent-2:#16a34a;
+  --card:#ffffff;
+  --border:#e5e7eb;
+}
+.dark:root{
+  --bg:#0b1020;
+  --text:#f5f7fa;
+  --muted:#9aa3b2;
+  --accent:#60a5fa;
+  --accent-2:#34d399;
+  --card:#0f172a;
+  --border:#233047;
+}
+html, body { background: var(--bg); color: var(--text); }
+* { font-feature-settings: "ss01" on, "liga" on; }
+.container { @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl; }
+.section { @apply py-10 sm:py-14; }
+/* Headings that pop in both themes */
+h1.brand { @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight; text-wrap: balance; filter: drop-shadow(0 1px 0 rgba(0,0,0,.15)); }
+.dark h1.brand { filter: drop-shadow(0 2px 0 rgba(255,255,255,.08)); }
+.lead { @apply text-base sm:text-lg text-[color:var(--muted)]; }
+.card { @apply rounded-2xl border bg-[color:var(--card)] border-[color:var(--border)] shadow-sm; }
+a { color: var(--accent); } a:hover{ text-decoration: underline; }
+.prose-list { @apply space-y-2; }

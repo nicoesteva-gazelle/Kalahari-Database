@@ -1,0 +1,51 @@
+﻿"use client";
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { PAPERS } from "@/data/papers";
+
+const REGIONS = ["All","Okavango","Kalahari North","Kalahari South","Ghanzi","Kgalagadi"];
+
+export default function MapExplorer(){
+  const [region, setRegion] = useState<string>("All");
+  const filtered = useMemo(()=>PAPERS.filter(p => region==="All" || p.region===region), [region]);
+
+  return (
+    <div className="k-grid k-grid-2 items-start">
+      {/* Makeshift SVG map (clickable blocks) */}
+      <div className="k-card p-md">
+        <svg viewBox="0 0 300 200" className="w-full h-auto rounded-[16px]" style={{background:"linear-gradient(180deg,#e8fff3,#f3fff8)", border:"1px solid var(--border)"}}>
+          <rect x="10" y="10" width="120" height="80" fill="#c9fdd7" stroke="var(--border)" onClick={()=>setRegion("Okavango")} style={{cursor:"pointer"}}/>
+          <text x="20" y="55" fontSize="12" fill="#065f46">Okavango</text>
+
+          <rect x="160" y="10" width="120" height="80" fill="#d6ffe8" stroke="var(--border)" onClick={()=>setRegion("Kalahari North")} style={{cursor:"pointer"}}/>
+          <text x="170" y="55" fontSize="12" fill="#065f46">Kalahari North</text>
+
+          <rect x="10" y="110" width="120" height="80" fill="#d6ffe8" stroke="var(--border)" onClick={()=>setRegion("Ghanzi")} style={{cursor:"pointer"}}/>
+          <text x="20" y="155" fontSize="12" fill="#065f46">Ghanzi</text>
+
+          <rect x="160" y="110" width="120" height="80" fill="#c9fdd7" stroke="var(--border)" onClick={()=>setRegion("Kgalagadi")} style={{cursor:"pointer"}}/>
+          <text x="170" y="155" fontSize="12" fill="#065f46">Kgalagadi</text>
+        </svg>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {REGIONS.map(r => (
+            <button key={r} className="k-chip" style={r===region?{background:"var(--accent)",color:"#fff",borderColor:"var(--accent)"}:{}} onClick={()=>setRegion(r)}>{r}</button>
+          ))}
+        </div>
+      </div>
+
+      {/* Results from selected region */}
+      <div>
+        <div className="muted k-copy-pop text-sm mb-2">{filtered.length} result(s){region!=="All" && <> · region: {region}</>}</div>
+        <div className="k-grid" style={{gridTemplateColumns:"repeat(2,minmax(0,1fr))"}}>
+          {filtered.map(r => (
+            <Link key={r.slug} href={`/papers/${r.slug}`} className="k-card p-sm block rounded-[16px]" style={{ borderColor:"var(--border)" }}>
+              <div className="uppercase tracking-[.04em] text-[12px]" style={{ color:"var(--muted)" }}>{r.type} · {r.region} · {r.year}</div>
+              <div className="mt-1 font-semibold k-pop">{r.title}</div>
+              <div className="muted text-[14px] mt-1">View →</div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

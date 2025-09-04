@@ -1,0 +1,15 @@
+﻿export default function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="border-t" style={{ borderColor: "var(--border)" }}>
+      <div className="k-container flex items-center justify-between h-20 text-sm">
+        <p>© {year} Kalahari Research Atlas</p>
+        <div className="flex items-center gap-4">
+          <a className="muted" href="https://github.com/">GitHub</a>
+          <a className="muted" href="https://www.linkedin.com/">LinkedIn</a>
+          <a className="muted" href="mailto:nicolas@thegazelle.co">Email</a>
+        </div>
+      </div>
+    </footer>
+  );
+}

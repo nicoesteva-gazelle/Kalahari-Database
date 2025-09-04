@@ -1,0 +1,11 @@
+﻿export default function PeoplePage(){
+  return (
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <h1 className="k-h1">Researchers & Partners</h1>
+      <p className="muted mt-2">Directory of experts and collaborators (placeholder page).</p>
+      <ul className="grid gap-3 mt-6 p-0 list-none">
+        <li><a href="/people/dr-mubyana-vegetation-dynamics" className="k-card p-sm block">Dr. T. Mubyana — vegetation dynamics</a></li>
+      </ul>
+    </main>
+  );
+}

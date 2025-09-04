@@ -1,0 +1,24 @@
+import ThemeToggle from "@/components/ThemeToggle";
+
+export default function DebugThemePage() {
+  return (
+    <main className="container mx-auto max-w-5xl px-6 py-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-display">Theme/Color Debug</h1>
+        <ThemeToggle />
+      </div>
+
+      <p className="mt-2 text-sm opacity-80">If you see colored blocks and a frosty card, Tailwind + globals + dark mode are all wired.</p>
+
+      <div className="mt-6 grid grid-cols-3 gap-3">
+        <div className="h-12 rounded-lg bg-sand-400" />
+        <div className="h-12 rounded-lg bg-acacia-500" />
+        <div className="h-12 rounded-lg bg-dusk-900" />
+      </div>
+
+      <div className="glass mt-8 rounded-2xl p-6">
+        Frosty glass card Ã¢â‚¬â€ should reflect light/dark backgrounds.
+      </div>
+    </main>
+  );
+}

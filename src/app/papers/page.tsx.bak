@@ -1,0 +1,12 @@
+﻿export default function PapersPage(){
+  return (
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <h1 className="k-h1">Browse Papers & Documents</h1>
+      <p className="muted mt-2">Filter by type, region, year, and keywords (placeholder page).</p>
+      <ul className="grid gap-3 mt-6 p-0 list-none">
+        <li><a href="/papers/elephant-movement-northern-kalahari" className="k-card p-sm block">Elephant movement in northern Kalahari (2019)</a></li>
+        <li><a href="/papers/land-board-minutes-grazing-ghanzi-2016" className="k-card p-sm block">Land Board Minutes on Grazing Allotments (2016)</a></li>
+      </ul>
+    </main>
+  );
+}

@@ -1,8 +1,12 @@
-export default function PeoplePage() {
+export default function PeoplePage(){
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold">People</h1>
-      <p className="mt-2 text-gray-600">List of researchers, authors, institutions will go here.</p>
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <h1 className="k-h1 k-readable-tight k-balance k-text-elevate k-measure">Researchers & Partners</h1>
+      <p className="muted mt-2 k-readable">Directory of experts and collaborators (placeholder page).</p>
+      <ul className="grid gap-3 mt-6 p-0 list-none k-readable k-prose">
+        <li><a href="/people/dr-mubyana-vegetation-dynamics" className="k-card p-sm block k-readable">Dr. T. Mubyana Ã¢â‚¬â€ vegetation dynamics</a></li>
+      </ul>
     </main>
   );
 }
+

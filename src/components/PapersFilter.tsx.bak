@@ -1,0 +1,108 @@
+﻿"use client";
+import { useMemo, useState, useEffect } from "react";
+import Link from "next/link";
+import { PAPERS } from "@/data/papers";
+
+const pick = (key: keyof (typeof PAPERS)[number]) => Array.from(new Set(PAPERS.map(d => d[key] as string))).sort();
+
+const TOPICS = pick("topic");
+const AUTHORS = pick("author");
+const REGIONS = pick("region");
+const FOCI = pick("focus");
+const ORGS = pick("organization");
+
+export default function PapersFilter(){
+  const [q, setQ] = useState("");
+  const [topic, setTopic] = useState("All");
+  const [author, setAuthor] = useState("All");
+  const [region, setRegion] = useState("All");
+  const [focus, setFocus] = useState("All");
+  const [org, setOrg] = useState("All");
+
+  // Load from URL if present (basic persistence)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setQ(params.get("q") ?? "");
+    setTopic(params.get("topic") ?? "All");
+    setAuthor(params.get("author") ?? "All");
+    setRegion(params.get("region") ?? "All");
+    setFocus(params.get("focus") ?? "All");
+    setOrg(params.get("org") ?? "All");
+  }, []);
+
+  // Push to URL when filters change
+  useEffect(() => {
+    const p = new URLSearchParams();
+    if (q) p.set("q", q);
+    if (topic !== "All") p.set("topic", topic);
+    if (author !== "All") p.set("author", author);
+    if (region !== "All") p.set("region", region);
+    if (focus !== "All") p.set("focus", focus);
+    if (org !== "All") p.set("org", org);
+    const s = p.toString();
+    const url = s ? `/papers?${s}` : "/papers";
+    window.history.replaceState(null, "", url);
+  }, [q, topic, author, region, focus, org]);
+
+  const results = useMemo(() => {
+    const ql = q.trim().toLowerCase();
+    return PAPERS.filter(d =>
+      (topic === "All" || d.topic === topic) &&
+      (author === "All" || d.author === author) &&
+      (region === "All" || d.region === region) &&
+      (focus === "All" || d.focus === focus) &&
+      (org === "All" || d.organization === org) &&
+      (ql === "" || d.title.toLowerCase().includes(ql) || d.author.toLowerCase().includes(ql))
+    ).sort((a,b)=>b.year-a.year);
+  }, [q, topic, author, region, focus, org]);
+
+  const Select = (props: {label:string; value:string; onChange:(v:string)=>void; options:string[]}) => (
+    <label className="flex flex-col gap-1">
+      <span className="muted k-copy-pop text-sm">{props.label}</span>
+      <select className="k-select" value={props.value} onChange={(e)=>props.onChange(e.target.value)}>
+        <option>All</option>
+        {props.options.map(o => <option key={o}>{o}</option>)}
+      </select>
+    </label>
+  );
+
+  return (
+    <div className="k-card p-lg">
+      {/* toolbar */}
+      <div className="k-grid" style={{gridTemplateColumns:"repeat(6, minmax(0,1fr))", gap: "16px"}}>
+        <label className="flex flex-col gap-1 col-span-2">
+          <span className="muted k-copy-pop text-sm">Search</span>
+          <input className="k-input" placeholder="Title or author…" value={q} onChange={(e)=>setQ(e.target.value)} />
+        </label>
+        <Select label="Topic" value={topic} onChange={setTopic} options={TOPICS} />
+        <Select label="Author" value={author} onChange={setAuthor} options={AUTHORS} />
+        <Select label="Region" value={region} onChange={setRegion} options={REGIONS} />
+        <Select label="Focus" value={focus} onChange={setFocus} options={FOCI} />
+        <Select label="Organization" value={org} onChange={setOrg} options={ORGS} />
+      </div>
+
+      {/* result count */}
+      <div className="flex items-center justify-between mt-4">
+        <div className="muted k-copy-pop text-sm">{results.length} result(s)</div>
+        {(topic!=="All"||author!=="All"||region!=="All"||focus!=="All"||org!=="All"||q!=="") && (
+          <button className="k-chip" onClick={() => { setTopic("All"); setAuthor("All"); setRegion("All"); setFocus("All"); setOrg("All"); setQ(""); }}>
+            Clear filters
+          </button>
+        )}
+      </div>
+
+      {/* results */}
+      <div className="k-grid mt-4" style={{gridTemplateColumns:"repeat(2, minmax(0,1fr))"}}>
+        {results.map(r => (
+          <Link key={r.slug} href={`/papers/${r.slug}`} className="k-card p-sm block rounded-[16px]" style={{ borderColor:"var(--border)" }}>
+            <div className="uppercase tracking-[.04em] text-[12px]" style={{ color:"var(--muted)" }}>
+              {r.type} · {r.region} · {r.year}
+            </div>
+            <div className="mt-1 font-semibold k-heading-pop">{r.title}</div>
+            <div className="muted text-[14px] mt-1">View →</div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

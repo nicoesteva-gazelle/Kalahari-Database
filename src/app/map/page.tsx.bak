@@ -1,0 +1,9 @@
+﻿export default function MapPage(){
+  return (
+    <main className="k-container" style={{padding:"48px 0"}}>
+      <h1 className="k-h1">Interactive Map</h1>
+      <p className="muted mt-2">Click a region to filter results (placeholder page).</p>
+      <div className="k-map k-card" style={{marginTop:"18px"}} />
+    </main>
+  );
+}

@@ -1,30 +1,68 @@
-export type Region = "North" | "South" | "Ghanzi" | "Okavango";
-export type Kind = "Government" | "Academic" | "Project" | "People";
+export type Region =
+  | "Okavango Delta"
+  | "Kalahari North"
+  | "Kalahari South"
+  | "Ghanzi"
+  | "Kgalagadi";
 
-export interface Item {
-  id: string;
-  title: string;
-  type: Kind;
-  year: number;
-  region: Region;
-  href: string;
-}
+export type Paper   = { title: string; slug: string; summary: string; region: Region; tags?: string[]; year?: number };
+export type Project = { title: string; slug: string; summary: string; region: Region; tags?: string[]; year?: number };
+export type Person  = { name: string;  slug: string; bio: string;     region: Region; tags?: string[]; year?: number };
 
-export const REGIONS: Region[] = ["North", "South", "Ghanzi", "Okavango"];
-
-export const items: Item[] = [
-  { id:"g-001", title:"Land Board Minutes – Ghanzi (2016)", type:"Government", year:2016, region:"Ghanzi", href:"/papers/land-board-minutes-grazing-ghanzi-2016" },
-  { id:"a-002", title:"Elephant Movement in Northern Kalahari", type:"Academic", year:2021, region:"North", href:"/papers/elephant-movement-northern-kalahari" },
-  { id:"p-003", title:"Water Points Rehabilitation Pilot", type:"Project", year:2024, region:"South", href:"/projects/water-points-rehabilitation-pilot-2024" },
-  { id:"r-006", title:"Researcher: Dr Mubyana", type:"People", year:2020, region:"North", href:"/people/dr-mubyana-vegetation-dynamics" },
-  // more dummy rows (safe links to list pages)
-  { id:"g-007", title:"Okavango EIA Summary (2019)", type:"Government", year:2019, region:"Okavango", href:"/papers" },
-  { id:"a-008", title:"Hydrology of the Southern Kalahari", type:"Academic", year:2018, region:"South", href:"/papers" },
-  { id:"p-009", title:"Ghanzi Borehole Survey", type:"Project", year:2022, region:"Ghanzi", href:"/projects" },
-  { id:"r-010", title:"Researcher: K. Mosarwa", type:"People", year:2022, region:"South", href:"/people" }
+export const regions: Region[] = [
+  "Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Kgalagadi"
 ];
 
-export function byRegion(region?: Region) {
-  if (!region) return items;
-  return items.filter(i => i.region === region);
-}
+// Base seed (papers)
+const seedPapers: Paper[] = [
+  { title: "Elephant movement in the northern Kalahari",
+    slug: "elephant-movement-northern-kalahari",
+    summary: "GPS-collar analysis of seasonal corridors and constraints across pans.",
+    region: "Kalahari North", tags: ["elephant","movement","corridors"], year: 2019 },
+  { title: "Land Board Minutes — Grazing in Ghanzi (2016)",
+    slug: "land-board-minutes-grazing-ghanzi-2016",
+    summary: "Public minutes highlighting permit allocations and rangeland use.",
+    region: "Ghanzi", tags: ["governance","grazing"], year: 2016 },
+];
+
+// Generate more (papers/projects/people)
+const pool: Region[] = ["Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Kgalagadi"];
+const years = [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+
+export const papers: Paper[] = [
+  ...seedPapers,
+  ...Array.from({length: 28}).map((_, i) => {
+    const region = pool[i % pool.length];
+    const idx = i + 1;
+    const year = years[i % years.length];
+    return {
+      title: `Dummy Paper ${idx} — ${region}`,
+      slug: `dummy-paper-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+      summary: "Placeholder abstract highlighting methods and findings relevant to regional management.",
+      region, tags: ["dummy","test","filter"], year,
+    } as Paper;
+  })
+];
+
+export const projects: Project[] = Array.from({length: 24}).map((_, i) => {
+  const region = pool[i % pool.length];
+  const idx = i + 1;
+  const year = years[(i+3) % years.length];
+  return {
+    title: `Community Water Access ${year} — ${region}`,
+    slug: `project-water-access-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+    summary: "Community-led water point maintenance and wildlife coexistence pilot.",
+    region, tags: ["water","community"], year,
+  } as Project;
+});
+
+export const people: Person[] = Array.from({length: 24}).map((_, i) => {
+  const region = pool[i % pool.length];
+  const idx = i + 1;
+  return {
+    name: `Researcher ${idx} — ${region}`,
+    slug: `researcher-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+    bio: "Ecology / land-use researcher focusing on region-specific dynamics.",
+    region, tags: ["researcher","directory"], year: 2022 - (i % 5),
+  } as Person;
+});

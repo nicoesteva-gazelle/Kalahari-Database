@@ -1,26 +1,42 @@
-import { Inter } from 'next/font/google';
-import SiteFooter from "@/components/SiteFooter";
-import SiteHeader from "@/components/SiteHeader";
+import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, Fraunces } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
+import Providers from "./providers";
+import { CONTACT } from "@/data/contact";
+import { Inter, Playfair_Display } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display" });
+
+export const metadata: Metadata = {
+  title: "Kalahari Database",
+  description: "Botswana–Kalahari research: papers, projects, people & places.",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const year = new Date().getFullYear();
+
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
-      <head>
-        <meta charSet="utf-8" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;var ls=localStorage.getItem("theme");var sys=window.matchMedia("(prefers-color-scheme: dark)").matches;var t=ls?ls:(sys?"dark":"light");d.classList.toggle("dark",t==="dark");d.setAttribute("data-theme",t);}catch(e){}})();`,
-          }}
-        />
-      </head>
-      <body className={`min-h-screen ${inter.className}`}>
-      <SiteHeader />{children}  <SiteFooter />
-</body>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
+      <body className="min-h-dvh bg-[var(--bg)] text-[var(--text)] antialiased" style={{fontFamily:"var(--font-body), system-ui, sans-serif"}}>
+        <Providers>
+          <SiteHeader />
+          <main className="container py-8">{children}</main>
+
+          <footer className="border-t mt-16 py-10 text-sm">
+            <div className="container">
+              <div style={{display:"flex",flexWrap:"wrap",gap:"12px",alignItems:"center",justifyContent:"space-between"}}>
+                <div className="muted">© {year} Kalahari Database</div>
+                <div className="pillbar">
+                  {CONTACT.email && <a className="chip" href={`mailto:${CONTACT.email}`}>Email</a>}
+                  {CONTACT.github && <a className="chip" href={CONTACT.github} target="_blank" rel="noreferrer">GitHub</a>}
+                  {CONTACT.linkedin && <a className="chip" href={CONTACT.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>}
+                </div>
+              </div>
+            </div>
+          </footer>
+        </Providers>
+      </body>
     </html>
   );
 }

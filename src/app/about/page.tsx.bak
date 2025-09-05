@@ -1,8 +1,8 @@
-﻿export default function AboutPage(){
+export default function AboutPage(){
   return (
     <main className="k-container" style={{padding:"48px 0"}}>
       <h1 className="k-h1">About the Kalahari Research Atlas</h1>
-      <p className="muted mt-2">This community project catalogs research and practice across Botswana’s Kalahari.</p>
+      <p className="muted mt-2">This community project catalogs research and practice across BotswanaÃ¢â‚¬â„¢s Kalahari.</p>
     </main>
   );
 }

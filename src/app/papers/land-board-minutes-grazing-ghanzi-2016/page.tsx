@@ -1,10 +1,11 @@
-export default function Page(){
+import Link from "next/link";
+
+export default function Page() {
   return (
-    <main className="k-container" style={{padding:"48px 0"}}>
-      <a href="/papers" className="muted">€  Back to Papers</a>
-      <h1 className="k-h1" style={{marginTop:"8px"}}>Land Board Minutes on Grazing Allotments</h1>
-      <p className="muted">Type: Government doc · Region: Ghanzi · Year: 2016</p>
-      <div className="k-card p-lg" style={{marginTop:"16px"}}>Placeholder summary and links.</div>
-    </main>
+    <article className="prose max-w-none">
+      <p className="mb-2"><Link href="/papers" className="underline">← Back to papers</Link></p>
+      <h1>Land Board Minutes — Grazing in Ghanzi (2016)</h1>
+      <p>Page content…</p>
+    </article>
   );
 }

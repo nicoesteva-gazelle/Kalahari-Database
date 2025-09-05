@@ -1,32 +1,39 @@
-"use client";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+﻿import React from "react";
 
-export default function SiteHeader(){
-  const [dark,setDark]=useState(false);
-  useEffect(()=>{ setDark(document.documentElement.classList.contains("dark")); },[]);
-  const toggle=()=>{
-    const root=document.documentElement;
-    root.classList.toggle("dark");
-    setDark(root.classList.contains("dark"));
-  };
+type NavItem = { id: string; label: string; href?: string };
+type SiteHeaderProps = {
+  title?: string;
+  nav?: NavItem[];
+  onToggleTheme?: () => void;
+};
+
+export default function SiteHeader({
+  title = "Kalahari Database",
+  nav = [],
+  onToggleTheme,
+}: SiteHeaderProps) {
   return (
-    <header className="site-header">
-      <div className="container">
-        <nav className="site-nav">
-          <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-            <span style={{display:"inline-grid",placeItems:"center",width:"22px",height:"22px",borderRadius:"6px",background:"var(--accent-2)"}}>✦</span>
-            <Link href="/" style={{fontWeight:800,letterSpacing:".015em"}}>Kalahari Database : Research Atlas</Link>
-          </div>
-          <div style={{display:"flex",alignItems:"center",gap:"18px"}}>
-            <Link href="/browse" className="chip">Browse</Link>
-            <Link href="/map" className="chip">Map</Link>
-            <Link href="/about" className="chip">About</Link>
-            <button onClick={toggle} aria-label="Toggle theme" className="chip" style={{borderColor:"var(--accent)",color:"var(--text)"}}>
-              {dark?"Light Mode":"Dark Mode"}
-            </button>
-          </div>
+    <header className="sticky top-0 z-40 border-b bg-background/70 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <div className="flex items-center gap-3">
+          <span className="text-lg font-semibold">{title}</span>
+        </div>
+
+        <nav className="hidden items-center gap-6 md:flex">
+          {nav.map((item) => (
+            <a key={item.id} href={item.href ?? `/#${item.id}`} className="text-sm hover:underline">
+              {item.label}
+            </a>
+          ))}
         </nav>
+
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          className="rounded-lg px-3 py-1 text-sm ring-1 ring-foreground/10 hover:bg-foreground/5"
+        >
+          Toggle theme
+        </button>
       </div>
     </header>
   );

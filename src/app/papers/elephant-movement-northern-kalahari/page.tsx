@@ -1,10 +1,11 @@
-export default function Page(){
+import Link from "next/link";
+
+export default function Page() {
   return (
-    <main className="k-container" style={{padding:"48px 0"}}>
-      <a href="/papers" className="muted">€  Back to Papers</a>
-      <h1 className="k-h1" style={{marginTop:"8px"}}>Elephant movement in northern Kalahari</h1>
-      <p className="muted">Type: Paper · Region: Okavango · Year: 2019</p>
-      <div className="k-card p-lg" style={{marginTop:"16px"}}>Placeholder abstract / metadata. Link out to PDF or external source here.</div>
-    </main>
+    <article className="prose max-w-none">
+      <p className="mb-2"><Link href="/papers" className="underline">← Back to papers</Link></p>
+      <h1>Elephant movement in the northern Kalahari</h1>
+      <p>Page content…</p>
+    </article>
   );
 }

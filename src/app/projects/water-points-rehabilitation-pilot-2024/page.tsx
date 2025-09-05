@@ -1,10 +1,11 @@
-export default function Page(){
+import Link from "next/link";
+
+export default function Page() {
   return (
-    <main className="k-container" style={{padding:"48px 0"}}>
-      <a href="/projects" className="muted">€  Back to Projects</a>
-      <h1 className="k-h1" style={{marginTop:"8px"}}>Water points rehabilitation (pilot)</h1>
-      <p className="muted">Region: Kgalagadi · Year: 2024</p>
-      <div className="k-card p-lg" style={{marginTop:"16px"}}>Placeholder description, milestones, and partners.</div>
-    </main>
+    <article className="prose max-w-none">
+      <p className="mb-2"><Link href="/projects" className="underline">← Back to projects</Link></p>
+      <h1>Water Points Rehabilitation Pilot (2024)</h1>
+      <p>Page content…</p>
+    </article>
   );
 }

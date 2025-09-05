@@ -1,0 +1,56 @@
+﻿export type Region =
+  | "Okavango Delta"
+  | "Kalahari North"
+  | "Kalahari South"
+  | "Ghanzi"
+  | "Nadowli-Kaleo (Ghana)";
+
+export type Paper = { title: string; slug: string; summary: string; region: Region; tags?: string[] };
+export type Project = { title: string; slug: string; summary: string; region: Region; tags?: string[] };
+export type Person = { name: string; slug: string; bio: string; region: Region; tags?: string[] };
+
+export const regions: Region[] = [
+  "Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Nadowli-Kaleo (Ghana)"
+];
+
+// Base seed papers
+const seedPapers: Paper[] = [
+  { title: "Elephant movement in the northern Kalahari",
+    slug: "elephant-movement-northern-kalahari",
+    summary: "GPS-collar analysis of seasonal corridors and constraints across pans.",
+    region: "Kalahari North", tags: ["elephant","movement","corridors"] },
+  { title: "Land Board Minutes — Grazing in Ghanzi (2016)",
+    slug: "land-board-minutes-grazing-ghanzi-2016",
+    summary: "Public minutes highlighting permit allocations and rangeland use.",
+    region: "Ghanzi", tags: ["governance","grazing"] },
+];
+
+// Auto-generate extra papers for stress testing
+const regionsPool: Region[] = ["Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Nadowli-Kaleo (Ghana)"];
+const extraPapers: Paper[] = Array.from({ length: 33 }).map((_, i) => {
+  const region = regionsPool[i % regionsPool.length];
+  const idx = i + 1;
+  return {
+    title: `Dummy Study ${idx} — ${region}`,
+    slug: `dummy-study-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}`,
+    summary: "Placeholder summary describing methods, results, and implications for regional management.",
+    region,
+    tags: ["dummy","test","filter"],
+  } satisfies Paper;
+});
+
+export const papers: Paper[] = [...seedPapers, ...extraPapers];
+
+export const projects: Project[] = [
+  { title: "Water Points Rehabilitation Pilot (2024)",
+    slug: "water-points-rehabilitation-pilot-2024",
+    summary: "Rehabilitating boreholes for community water security and wildlife coexistence.",
+    region: "Ghanzi" },
+];
+
+export const people: Person[] = [
+  { name: "Dr. Mubyana — Vegetation Dynamics",
+    slug: "dr-mubyana-vegetation-dynamics",
+    bio: "Long-term trends in savanna vegetation and rainfall variability.",
+    region: "Kalahari South" },
+];

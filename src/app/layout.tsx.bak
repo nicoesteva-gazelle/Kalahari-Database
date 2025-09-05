@@ -1,20 +1,28 @@
-﻿import "./globals.css";
-import { Inter, Fraunces } from "next/font/google";
+﻿import type { Metadata } from "next";
+import "./globals.css";
+import SiteHeader from "@/components/SiteHeader";
+import Providers from "./providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+export const metadata: Metadata = {
+  title: "Kalahari Database",
+  description: "Botswana–Kalahari research: papers, projects, people & places.",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const year = new Date().getFullYear();
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;var ls=localStorage.getItem("theme");var sys=window.matchMedia("(prefers-color-scheme: dark)").matches;var t=ls?ls:(sys?"dark":"light");d.classList.toggle("dark",t==="dark");d.setAttribute("data-theme",t);}catch(e){}})();`,
-          }}
-        />
-      </head>
-      <body className="min-h-screen">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-dvh bg-[var(--bg)] text-[var(--text)] antialiased">
+        <Providers>
+          <SiteHeader />
+          <main className="container mx-auto max-w-6xl px-6 py-8">{children}</main>
+          <footer className="border-t mt-16 py-8 text-sm opacity-80">
+            <div className="container mx-auto max-w-6xl px-6">
+              © {year} Kalahari Database — Open access ethos
+            </div>
+          </footer>
+        </Providers>
+      </body>
     </html>
   );
 }

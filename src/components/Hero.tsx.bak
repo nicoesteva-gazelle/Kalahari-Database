@@ -1,11 +1,13 @@
-﻿import Link from "next/link";
+import Link from "next/link";
+import Image from "next/image";
 
-type CTA = { href: string; label: string; primary?: boolean; };
+type CTA = { href: string; label: string; primary?: boolean };
+
 export default function Hero(props: {
   title: string;
   highlight: string;
   subtitle: string;
-  image: string;
+  image: string; // path or URL
   ctas: CTA[];
 }) {
   const { title, highlight, subtitle, image, ctas } = props;
@@ -13,7 +15,13 @@ export default function Hero(props: {
   return (
     <section className="relative container mx-auto max-w-6xl px-6 pt-16 pb-12 hero-image hero-vignette">
       {/* full-bleed media */}
-      <img src={image} alt="" className="hero-media" />
+      <Image
+        src={image}
+        alt={subtitle || title}
+        fill
+        priority
+        className="hero-media object-cover"
+      />
 
       {/* glass content */}
       <div className="glass rounded-3xl p-8 sm:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.18)] relative z-[1]">

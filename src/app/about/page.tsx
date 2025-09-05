@@ -1,8 +1,12 @@
-export default function AboutPage(){
+﻿export default function AboutPage() {
   return (
-    <main className="k-container" style={{padding:"48px 0"}}>
-      <h1 className="k-h1">About the Kalahari Research Atlas</h1>
-      <p className="muted mt-2">This community project catalogs research and practice across BotswanaÃ¢â‚¬â„¢s Kalahari.</p>
-    </main>
+    <div className="prose max-w-none">
+      <h1>About</h1>
+      <p>
+        The Kalahari Database is an open, collaborative index of papers, projects, people and places
+        across the Botswana–Kalahari region. Our aim is to reduce duplication, accelerate learning,
+        and strengthen community-led conservation and research.
+      </p>
+    </div>
   );
 }

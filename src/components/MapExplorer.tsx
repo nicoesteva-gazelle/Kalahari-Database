@@ -1,23 +1,27 @@
 "use client";
-import { REGIONS, Region } from "@/data/records";
+import { regions, Region } from "@/data/records";
 
 export default function MapExplorer() {
   const select = (r: Region) => {
-    // Update URL query for deep-linking
-    const url = new URL(window.location.href);
-    url.searchParams.set("region", r);
-    window.history.replaceState({}, "", url.toString());
-    // Fire a global event any page can listen to
-    window.dispatchEvent(new CustomEvent("kd:region-select", { detail: r }));
+    // Navigate to the Browse page filtered by region
+    window.location.href = `/browse?region=${encodeURIComponent(r)}`;
   };
 
   return (
-    <div className="k-map-grid">
-      {REGIONS.map((r) => (
-        <button key={r} className="k-map-cell" onClick={() => select(r)}>
-          <span>{r === "North" ? "Kalahari North" : r}</span>
-        </button>
-      ))}
+    <div className="space-y-3">
+      <p className="opacity-80">Quick filter by region:</p>
+      <div className="flex flex-wrap gap-2">
+        {regions.map((r) => (
+          <button
+            key={r}
+            onClick={() => select(r)}
+            className="btn-ghost"
+            type="button"
+          >
+            {r}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

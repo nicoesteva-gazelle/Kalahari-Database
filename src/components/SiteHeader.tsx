@@ -1,44 +1,58 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "@/app/components/ThemeToggle";
 
-function getInitialTheme(): "dark" | "light" {
-  if (typeof window === "undefined") return "light";
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark" || saved === "light") return saved as any;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
+const NAV = [
+  { href: "/browse", label: "Browse" },
+  { href: "/map", label: "Map" },
+  { href: "/papers", label: "Papers" },
+  { href: "/people", label: "People" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+];
 
-export default function SiteHeader(){
-  const [theme,setTheme] = useState<"dark"|"light">("light");
-  useEffect(()=>{
-    const t = getInitialTheme();
-    setTheme(t);
-    document.documentElement.classList.toggle("dark", t==="dark");
-  },[]);
-  const toggle = ()=>{
-    const next = theme==="dark" ? "light":"dark";
-    setTheme(next);
-    document.documentElement.classList.toggle("dark", next==="dark");
-    localStorage.setItem("theme", next);
-  };
+export default function SiteHeader() {
+  const pathname = usePathname();
   return (
-    <header className="site-header">
-      <div className="container">
-        <nav className="site-nav">
-          <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-            <span style={{display:"inline-grid",placeItems:"center",width:"22px",height:"22px",borderRadius:"6px",background:"var(--accent-2)"}}></span>
-            <Link href="/" style={{fontWeight:800,letterSpacing:".015em"}}>Kalahari Database : Research Atlas</Link>
-          </div>
-          <div style={{display:"flex",alignItems:"center",gap:"18px"}}>
-            <Link href="/browse" className="chip">Browse</Link>
-            <Link href="/map" className="chip">Map</Link>
-            <Link href="/about" className="chip">About</Link>
-            <button onClick={toggle} aria-label="Toggle theme" className="toggle" data-on={theme==="dark"}>
-              <span className="toggle-thumb" />
-            </button>
-          </div>
+    <header className="sticky top-0 z-50 border-b bg-[color-mix(in_oklab,var(--bg)_92%,#fff)]/80 backdrop-blur">
+      <div className="container h-20 flex items-center justify-between">
+        <Link href="/" aria-label="Kalahari Database — Home" className="group">
+          <span
+            className="brand"
+            style={{
+              display:"inline-block",
+              fontFamily:"var(--font-display)",
+              fontWeight:800,
+              letterSpacing:"-0.02em",
+              background:"linear-gradient(90deg,var(--accent),var(--accent-2))",
+              WebkitBackgroundClip:"text",
+              backgroundClip:"text",
+              color:"transparent",
+              textShadow:"0 2px 14px color-mix(in oklab,var(--accent) 15%, transparent)",
+              fontSize:"clamp(1.4rem, 2.6vw + .6rem, 2.6rem)",
+              lineHeight:1.05
+            }}
+          >
+            Kalahari Database
+          </span>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-2">
+          {NAV.map((n) => (
+            <Link
+              key={n.href}
+              href={n.href}
+              className={`px-3 py-1.5 rounded-lg hover:bg-white/60 ${pathname === n.href ? "bg-white/80" : ""}`}
+            >
+              {n.label}
+            </Link>
+          ))}
         </nav>
+
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

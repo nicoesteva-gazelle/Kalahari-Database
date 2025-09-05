@@ -22,16 +22,9 @@ export default function SiteHeader() {
             className="brand"
             style={{
               display:"inline-block",
-              fontFamily:"var(--font-display)",
               fontWeight:800,
-              letterSpacing:"-0.02em",
-              background:"linear-gradient(90deg,var(--accent),var(--accent-2))",
-              WebkitBackgroundClip:"text",
-              backgroundClip:"text",
-              color:"transparent",
-              textShadow:"0 2px 14px color-mix(in oklab,var(--accent) 15%, transparent)",
-              fontSize:"clamp(1.4rem, 2.6vw + .6rem, 2.6rem)",
-              lineHeight:1.05
+              fontSize:"clamp(1.6rem, 2.8vw + .6rem, 2.8rem)",
+              lineHeight:1.05,
             }}
           >
             Kalahari Database

@@ -1,0 +1,26 @@
+<svg viewBox="0 0 1600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b3a35" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0b3a35" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <!-- horizon -->
+  <rect x="0" y="260" width="1600" height="140" fill="url(#g)"/>
+  <!-- simple acacia silhouettes -->
+  <g fill="#0b3a35" opacity="0.35">
+    <path d="M220 260 h120 v10 h-40 v20 h-40 v-20 h-40 z"/>
+    <path d="M260 250 q80 -40 160 0 q-60 10 -160 0z"/>
+    <rect x="318" y="260" width="14" height="35"/>
+  </g>
+  <g fill="#0b3a35" opacity="0.35">
+    <path d="M1060 260 h140 v10 h-50 v18 h-40 v-18 h-50 z"/>
+    <path d="M1100 248 q90 -45 180 0 q-70 12 -180 0z"/>
+    <rect x="1166" y="260" width="16" height="38"/>
+  </g>
+  <g fill="#0b3a35" opacity="0.28">
+    <path d="M560 260 h100 v8 h-36 v16 h-28 v-16 h-36 z"/>
+    <path d="M590 252 q60 -30 120 0 q-50 8 -120 0z"/>
+    <rect x="622" y="260" width="12" height="30"/>
+  </g>
+</svg>

@@ -56,3 +56,125 @@ body{background:var(--bg);color:var(--text)}
   --font-display: "Cinzel Decorative", serif;
 }
 .font-display{ font-family: var(--font-display), serif; letter-spacing: 0.02em; }
+/* --- Safari/Research typography hook --- */
+:root{ --font-body:"Merriweather Sans",system-ui,sans-serif; --font-display:"Special Elite",serif; }
+.font-display{ font-family:var(--font-display),serif; letter-spacing:.015em; }
+
+/* --- Light mode refresh --- */
+:root{
+  --bg:#f5ecd9;           /* warmer parchment */
+  --text:#27272a;
+  --muted:#6b7280;
+  --border:#e4dfd3;
+  --accent:#0f766e;       /* deep teal-emerald */
+  --accent-2:#14b8a6;     /* aqua-teal highlight */
+  --accent-warm:#c2410c;  /* terracotta */
+  --card:#ffffff;
+}
+.dark{
+  --bg:#052e2b;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --border:#0e4a45;
+  --accent:#34d399;
+  --accent-2:#86efac;
+  --accent-warm:#f59e0b; /* warm highlight in dark */
+  --card:#083b37;
+}
+
+/* Subtle parchment texture (light only) */
+html:not(.dark) body{
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(0,0,0,.04), rgba(0,0,0,0) 55%),
+    radial-gradient(1000px 500px at 90% 20%, rgba(0,0,0,.035), rgba(0,0,0,0) 60%),
+    var(--bg);
+}
+
+/* Buttons */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:16px;
+  border:1px solid var(--accent);background:var(--accent);color:#fff;font-weight:700;
+  box-shadow:0 2px 0 rgba(0,0,0,.05)
+}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:16px;
+  border:1px solid var(--border);background:transparent;color:var(--text);font-weight:700
+}
+html:not(.dark) .btn-ghost:hover{border-color:var(--accent-warm); color:var(--accent-warm)}
+
+/* Cards */
+.kcard{
+  background:var(--card);
+  border:1px solid color-mix(in oklab,var(--border) 90%, var(--accent-warm));
+  border-radius:20px;padding:18px;
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.kcard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  border-color:color-mix(in oklab,var(--border) 60%, var(--accent-warm));
+}
+
+/* Section divider (map-grid vibe) */
+.divider{
+  border:0;height:1px;
+  background:
+    repeating-linear-gradient(90deg, color-mix(in oklab,var(--muted) 40%, transparent) 0 12px, transparent 12px 24px);
+  opacity:.7;border-radius:999px;
+}
+
+/* Header brand flair */
+.brand{
+  font-family:var(--font-display),serif !important;
+  letter-spacing:.02em;
+  text-shadow:0 1px 0 rgba(255,255,255,.3), 0 6px 20px rgba(0,0,0,.08);
+}
+html:not(.dark) .brand{
+  background:linear-gradient(90deg, var(--accent-warm), var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.dark .brand{
+  background:linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* Hero acacia overlay */
+.hero-acacia{
+  position:absolute;inset:auto 0 0 0; height:35%; object-fit:cover; opacity:.18; pointer-events:none;
+  filter:contrast(105%) saturate(80%);
+}
+/* Make acacia overlay a touch stronger and always above bg image, below glass */
+.hero-acacia{ position:absolute; left:0; right:0; bottom:0; height:38%; object-fit:cover; pointer-events:none; }
+html:not(.dark) .hero-acacia{ opacity:.30; }
+.dark .hero-acacia{ opacity:.22; }
+/* Ensure acacia stacks above bg image but below glass */
+.hero-acacia{ position:absolute; left:0; right:0; bottom:0; height:38%; object-fit:cover; pointer-events:none; }
+
+/* Stop visited links turning purple */
+a:visited, .chip:visited { color: currentColor; }
+
+/* Slightly tighter default spacings for sections on home */
+@media (min-width: 640px){
+  .container .kcard { padding: 16px; }
+}
+/* Faint corner footprints to reduce empty space (very subtle) */
+body::before, body::after{
+  content:"";
+  position:fixed; pointer-events:none; z-index:0;
+  width:180px; height:180px; opacity:.06;
+  background:
+    radial-gradient(8px 6px at 20% 30%, #000, transparent 60%),
+    radial-gradient(8px 6px at 55% 45%, #000, transparent 60%),
+    radial-gradient(7px 5px at 35% 75%, #000, transparent 60%);
+  filter: blur(.3px);
+  transform: rotate(-12deg);
+}
+body::before{ left:8px; bottom:8px; }
+body::after { right:8px; top:8px; transform: rotate(14deg); }
+
+/* Slightly stronger map-grid divider */
+.divider{
+  background:
+    repeating-linear-gradient(90deg, color-mix(in oklab,var(--muted) 52%, transparent) 0 10px, transparent 10px 22px);
+}

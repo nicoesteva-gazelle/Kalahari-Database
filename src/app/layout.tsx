@@ -3,10 +3,10 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Providers from "./providers";
 import { CONTACT } from "@/data/contact";
-import { Merriweather_Sans, Cinzel_Decorative } from "next/font/google";
+import { Merriweather_Sans, Special_Elite } from "next/font/google";
 
 const body = Merriweather_Sans({ subsets: ["latin"], weight: ["400","700"], variable: "--font-body" });
-const display = Cinzel_Decorative({ subsets: ["latin"], weight: ["700"], variable: "--font-display" });
+const display = Special_Elite({ subsets: ["latin"], weight: "400", variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Kalahari Database",
@@ -15,14 +15,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
-
   return (
     <html lang="en" suppressHydrationWarning className={`${body.variable} ${display.variable}`}>
       <body className="min-h-dvh bg-[var(--bg)] text-[var(--text)] antialiased" style={{fontFamily:"var(--font-body), system-ui, sans-serif"}}>
         <Providers>
           <SiteHeader />
           <main className="container py-8">{children}</main>
-
           <footer className="border-t mt-16 py-10 text-sm">
             <div className="container">
               <div style={{display:"flex",flexWrap:"wrap",gap:"12px",alignItems:"center",justifyContent:"space-between"}}>

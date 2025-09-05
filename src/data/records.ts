@@ -13,7 +13,7 @@ export const regions: Region[] = [
   "Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Kgalagadi"
 ];
 
-// Base seed (papers)
+// Seed papers
 const seedPapers: Paper[] = [
   { title: "Elephant movement in the northern Kalahari",
     slug: "elephant-movement-northern-kalahari",
@@ -25,7 +25,6 @@ const seedPapers: Paper[] = [
     region: "Ghanzi", tags: ["governance","grazing"], year: 2016 },
 ];
 
-// Generate more (papers/projects/people)
 const pool: Region[] = ["Okavango Delta","Kalahari North","Kalahari South","Ghanzi","Kgalagadi"];
 const years = [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
 
@@ -44,25 +43,87 @@ export const papers: Paper[] = [
   })
 ];
 
-export const projects: Project[] = Array.from({length: 24}).map((_, i) => {
-  const region = pool[i % pool.length];
-  const idx = i + 1;
-  const year = years[(i+3) % years.length];
-  return {
-    title: `Community Water Access ${year} — ${region}`,
-    slug: `project-water-access-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
-    summary: "Community-led water point maintenance and wildlife coexistence pilot.",
-    region, tags: ["water","community"], year,
-  } as Project;
-});
+// --- Realistic projects (Botswana-themed) ---
+const realProjects: Project[] = [
+  {
+    title: "Okavango Delta Elephant Monitoring",
+    slug: "okavango-elephant-monitoring",
+    summary: "GPS collaring and aerial surveys to track elephants and reduce conflict.",
+    region: "Okavango Delta",
+    tags: ["elephants","monitoring"],
+    year: 2021,
+  },
+  {
+    title: "Kalahari Predator Coexistence Initiative",
+    slug: "kalahari-predator-coexistence",
+    summary: "Field research with lions and hyenas to improve coexistence with pastoralists.",
+    region: "Kalahari South",
+    tags: ["lions","human-wildlife"],
+    year: 2020,
+  },
+  {
+    title: "Ghanzi Rangeland Rehabilitation Pilot",
+    slug: "ghanzi-rangeland-rehabilitation",
+    summary: "Community-based grazing committees restoring degraded pastures.",
+    region: "Ghanzi",
+    tags: ["rangeland","community"],
+    year: 2019,
+  },
+];
 
-export const people: Person[] = Array.from({length: 24}).map((_, i) => {
-  const region = pool[i % pool.length];
-  const idx = i + 1;
-  return {
-    name: `Researcher ${idx} — ${region}`,
-    slug: `researcher-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
-    bio: "Ecology / land-use researcher focusing on region-specific dynamics.",
-    region, tags: ["researcher","directory"], year: 2022 - (i % 5),
-  } as Person;
-});
+export const projects: Project[] = [
+  ...realProjects,
+  ...Array.from({length: 24}).map((_, i) => {
+    const region = pool[i % pool.length];
+    const idx = i + 1;
+    const year = years[(i+3) % years.length];
+    return {
+      title: `Community Water Access ${year} — ${region}`,
+      slug: `project-water-access-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+      summary: "Community-led water point maintenance and wildlife coexistence pilot.",
+      region, tags: ["water","community"], year,
+    } as Project;
+  })
+];
+
+// --- Realistic people & organizations (Botswana) ---
+const realPeople: Person[] = [
+  {
+    name: "Dr. Kathleen Alexander",
+    slug: "kathleen-alexander",
+    bio: "Wildlife veterinarian and researcher focusing on human–wildlife conflict in the Okavango Delta.",
+    region: "Okavango Delta",
+    tags: ["wildlife","conservation"],
+    year: 2024,
+  },
+  {
+    name: "Kalahari Conservation Society",
+    slug: "kalahari-conservation-society",
+    bio: "One of Botswana’s oldest environmental NGOs, working on wildlife corridors and community partnerships.",
+    region: "Kalahari North",
+    tags: ["ngo","policy"],
+    year: 2023,
+  },
+  {
+    name: "Dr. Goitseone Mogomotsi",
+    slug: "goitseone-mogomotsi",
+    bio: "Environmental law and governance scholar, University of Botswana.",
+    region: "Ghanzi",
+    tags: ["law","policy","community"],
+    year: 2022,
+  },
+];
+
+export const people: Person[] = [
+  ...realPeople,
+  ...Array.from({length: 24}).map((_, i) => {
+    const region = pool[i % pool.length];
+    const idx = i + 1;
+    return {
+      name: `Researcher ${idx} — ${region}`,
+      slug: `researcher-${idx}-${region.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+      bio: "Ecology / land-use researcher focusing on region-specific dynamics.",
+      region, tags: ["researcher","directory"], year: 2022 - (i % 5),
+    } as Person;
+  })
+];

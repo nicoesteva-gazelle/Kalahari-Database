@@ -49,3 +49,10 @@ body{background:var(--bg);color:var(--text)}
 /* Font variable hooks (from next/font) */
 :root{ --font-body: Inter, system-ui, sans-serif; --font-display: "Playfair Display", serif; }
 .font-display{ font-family: var(--font-display), serif; }
+
+/* --- Safari/Research typography --- */
+:root{
+  --font-body: "Merriweather Sans", system-ui, sans-serif;
+  --font-display: "Cinzel Decorative", serif;
+}
+.font-display{ font-family: var(--font-display), serif; letter-spacing: 0.02em; }

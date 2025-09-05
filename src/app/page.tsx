@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import { papers, projects, people, regions } from "@/data/records";
+import { FileText, Compass, UserCircle, MapPin } from "lucide-react";
 
 export default function HomePage() {
   const stats = {
@@ -26,10 +27,26 @@ export default function HomePage() {
 
         {/* Live stats */}
         <div className="mt-8 grid gap-4 sm:grid-cols-4">
-          <div className="kcard text-center"><h3 className="muted mb-1">Papers</h3><p className="text-3xl font-bold">{stats.papers}</p></div>
-          <div className="kcard text-center"><h3 className="muted mb-1">Projects</h3><p className="text-3xl font-bold">{stats.projects}</p></div>
-          <div className="kcard text-center"><h3 className="muted mb-1">People</h3><p className="text-3xl font-bold">{stats.people}</p></div>
-          <div className="kcard text-center"><h3 className="muted mb-1">Regions</h3><p className="text-3xl font-bold">{stats.regions}</p></div>
+          <div className="kcard text-center">
+            <FileText className="mx-auto mb-2 h-6 w-6 text-[var(--accent)]" />
+            <h3 className="muted mb-1">Papers</h3>
+            <p className="text-3xl font-bold">{stats.papers}</p>
+          </div>
+          <div className="kcard text-center">
+            <Compass className="mx-auto mb-2 h-6 w-6 text-[var(--accent)]" />
+            <h3 className="muted mb-1">Projects</h3>
+            <p className="text-3xl font-bold">{stats.projects}</p>
+          </div>
+          <div className="kcard text-center">
+            <UserCircle className="mx-auto mb-2 h-6 w-6 text-[var(--accent)]" />
+            <h3 className="muted mb-1">People</h3>
+            <p className="text-3xl font-bold">{stats.people}</p>
+          </div>
+          <div className="kcard text-center">
+            <MapPin className="mx-auto mb-2 h-6 w-6 text-[var(--accent)]" />
+            <h3 className="muted mb-1">Regions</h3>
+            <p className="text-3xl font-bold">{stats.regions}</p>
+          </div>
         </div>
 
         {/* Region marquee */}
